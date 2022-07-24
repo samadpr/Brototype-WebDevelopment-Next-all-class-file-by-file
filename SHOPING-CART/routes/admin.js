@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* GET users listing. */
 router.get('/', function(req, res, next) {
   let products=[
     {
@@ -29,10 +29,14 @@ router.get('/', function(req, res, next) {
       image:'https://cdn.shopify.com/s/files/1/0614/8096/0176/products/Oppo-A54-_Starry-Blue-128GB_-_6GB-RAM_-Best-Online-Electronics-SLP5SFmAjPFliM.webp?v=1651701066&width=600'
     }
   ]
-
-
-
-  res.render('index', { products, admin:true });
+  res.render('admin/view-products',{admin:true,products})
 });
+router.get('/add-product',function(req,res){
+  res.render('admin/add-product');
+});
+router.post('/add-product',(req,res)=>{
+  console.log(req.body);
+  console.log(req.files.Image);
+})
 
 module.exports = router;
