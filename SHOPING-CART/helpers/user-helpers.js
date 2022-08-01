@@ -70,14 +70,14 @@ module.exports = {
                     $match:{user:objectId(userId)}
                 },
                 {
-                    lookup:{
+                    $lookup:{
                         form:collection.PRODUCT_COLLECTION,
                         let:{prodList:'$products'},
                         pipeline:[
                             {
                                 $match:{
                                     $expr:{
-                                        $in:['$_id',"$$prodList"]
+                                        $in:['$_id','$$prodList']
                                     }
                                 }
                             }
